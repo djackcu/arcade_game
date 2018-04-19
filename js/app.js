@@ -16,6 +16,7 @@ Enemy.prototype.update = function(dt) {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
+    console.log('testing');
 };
 
 // Draw the enemy on the screen, required method for game
@@ -27,10 +28,23 @@ Enemy.prototype.render = function() {
 // This class requires an update(), render() and
 // a handleInput() method.
 
+var Player = function() {
+    Enemy.prototype = Object.call(this)
+    this.sprite = 'images/char-boy.png';
+    this.x = 101;
+    this.x = 166;
+};
+
+Player.prototype = Object.create(Enemy.prototype);
+Player.prototype.constructor = Player;
+
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
-
+let enemy1 = new Enemy();
+let player = new Player();
+var allEnemies = [];
+allEnemies.push(enemy1);
 
 
 // This listens for key presses and sends the keys to your
