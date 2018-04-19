@@ -25,7 +25,7 @@ var Enemy = function(row = 0, speedFactor = 1) {
     Entity.prototype = Object.call(this);
     this.x = -90;
     this.y = 60 + row * 85;
-    this.speed = 30 * speedFactor;
+    this.speed = 50 * speedFactor;
     this.sprite = 'images/enemy-bug.png';
 };
 
@@ -38,6 +38,7 @@ Enemy.prototype.update = function(dt) {
     // which will ensure the game runs at the same speed for
     // all computers.
     this.x += this.speed * dt;
+    (this.x >= 500)? this.x = -90 : true;
 
 };
 
@@ -65,8 +66,8 @@ Player.prototype.handleInput = function(key) {
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
 let enemy1 = new Enemy(2);
-let enemy2 = new Enemy(1,1.5);
-let enemy3 = new Enemy(0,2);
+let enemy2 = new Enemy(1,2);
+let enemy3 = new Enemy(0,3);
 let player = new Player();
 var allEnemies = [];
 allEnemies.push(enemy1,enemy2,enemy3);
