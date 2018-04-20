@@ -49,8 +49,8 @@ Enemy.prototype.update = function(dt) {
 var Player = function() {
     Entity.prototype = Object.call(this);
     this.sprite = 'images/char-boy.png';
-    this.x = 200-100;
-    this.y = 400-85;
+    this.x = 200;
+    this.y = 410;
 };
 
 Player.prototype = Object.create(Entity.prototype);
@@ -59,6 +59,22 @@ Player.prototype.constructor = Player;
 Player.prototype.handleInput = function(key) {
     //factor to move in x = 100
     //factor to move in y = 85
+    switch(key) {
+        case 'left':
+            (this.x - 100 >= 0) ? this.x -=100 : false;
+            break;
+        case 'right':
+            (this.x + 100 < 500) ? this.x +=100 : false;
+            break;
+        case 'up':
+            (this.y - 85 >= -15) ? this.y -=85 : false;
+            break;
+        case 'down':
+            (this.y + 85 <= 410) ? this.y +=85 : false;
+            break;
+        default:
+            false;
+    }
 
 }
 
