@@ -39,6 +39,12 @@ Enemy.prototype.update = function(dt) {
     // all computers.
     this.x += this.speed * dt;
     (this.x >= 500)? this.x = -90 : true;
+};
+
+Enemy.prototype.checkCollisions = function(pl) {
+ if(this.x <= pl.x + 90 && this.x + 90 >= pl.x && this.y + 10 == pl.y){
+    pl.end = true;
+ }
 
 };
 
@@ -47,14 +53,27 @@ Enemy.prototype.update = function(dt) {
 // a handleInput() method.
 
 var Player = function() {
-    Entity.prototype = Object.call(this);
-    this.sprite = 'images/char-boy.png';
+    Entity.prototype = Object.call(this);    
     this.x = 200;
     this.y = 410;
+    this.sprite = 'images/char-boy.png';
+    this.end = false;
 };
+
 
 Player.prototype = Object.create(Entity.prototype);
 Player.prototype.constructor = Player;
+
+Player.prototype.update = function(dt) {
+    if(this.y <= 60){
+        this.end = true;
+    }
+};
+
+Player.prototype.init = function() {
+    this.x = 200;
+    this.y = 410;
+}
 
 Player.prototype.handleInput = function(key) {
     //factor to move in x = 100
