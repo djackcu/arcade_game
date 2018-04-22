@@ -47,4 +47,4 @@ This repository is one of the project of _Udacity's Nanodegree_. Therefore, we m
 
 ## Authors
 
-**Dieter Jackson***
+**Dieter Jackson**
