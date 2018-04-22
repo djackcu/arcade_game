@@ -184,8 +184,9 @@ var Engine = (function(global) {
         ctx.textBaseline = 'hanging';
         ctx.font = '50px serif';
         ctx.fillText(`Game Over`, 150, 260);
-        ctx.font = '25px serif';
+        ctx.font = '30px serif';
         ctx.fillText(`Score ${player.score}`, 200, 330);
+        ctx.fillText(`Press ESC to restart`, 150, 430);
     }
 
     /* This function does nothing but it could have been a good place to
