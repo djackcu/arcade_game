@@ -1,6 +1,50 @@
-frontend-nanodegree-arcade-game
-===============================
+# Arcade Game
 
-Students should use this [rubric](https://review.udacity.com/#!/projects/2696458597/rubric) for self-checking their submission. Make sure the functions you write are **object-oriented** - either class functions (like Player and Enemy) or class prototype functions such as Enemy.prototype.checkCollisions, and that the keyword 'this' is used appropriately within your class and class prototype functions to refer to the object the function is called upon. Also be sure that the **readme.md** file is updated with your instructions on both how to 1. Run and 2. Play your arcade game.
+## Table of content
+* [Descriptions](#description)
+* [Instructions](#instructions)
+* [Getting started](#getting-started)
+* [Build width](#build-width)
+* [Code description](#code-description)
+* [Contributing](#contributing)
+* [Authors](#authors)
+* [License](#license)
 
-For detailed instructions on how to get started, check out this [guide](https://docs.google.com/document/d/1v01aScPjSWCCWQLIpFqvg3-vXLH2e8_SZQKC8jNO0Dc/pub?embedded=true).
+### Description
+This Arcade Game is a project made in **ES6** javascript with ** object-oriented programming**.It is a Project for practice web front-end skills in the _Udacity Front-End Nanodegree_.
+You can test and enjoy this game.
+
+### Instructions 
+* In this game you have a Player and Enemies (Bugs). 
+* The goal of the player is to reach the water, without colliding into any one of the enemies. 
+* The player can move left, right, up and down. 
+* The enemies move in varying speeds on the paved block portion of the scene.
+* Once a the player collides with an enemy, the game is reset and the player moves back to the start square. 
+* Once the player reaches the water the game is won.
+
+
+### Getting started
+This game you can play online:
+[https://djackcu.github.io/arcade_Game/](https://djackcu.github.io/arcade_Game/)
+or can play in your computer:
+```
+$ git clone https://github.com/djackcu/arcade_Game.git
+$ cd arcade_Game
+```
+
+and open the file _index.html_
+### Build width
+* [JavaScript](https://www.javascript.com/)
+* [HTML5](https://www.w3.org/TR/html5/)
+* [CSS3](https://www.w3.org/TR/css3-roadmap/)
+
+### Code description
+**_Enemy_** is a class to instantiate every enemy(bug).
+**_Player_** is a class to instantiate the player.
+
+### Contributing
+This repository is one of the project of _Udacity's Nanodegree_. Therefore, we most likely will not accept pull requests. 
+
+## Authors
+
+**Dieter Jackson***
