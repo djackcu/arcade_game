@@ -81,9 +81,6 @@ var Engine = (function(global) {
     function update(dt) {
         updateEntities(dt);
         checkCollisions();
-        if(player.end){
-            reset();
-        }
     }
 
     /* This is called by the update function and loops through all of the
@@ -148,7 +145,12 @@ var Engine = (function(global) {
             }
         }
 
-        renderEntities();
+        if(player.live<=0){
+            renderEndGame();
+        }else{
+            renderEntities();
+            renderScoreboard();
+        }
     }
 
     /* This function is called by the render function and is called on each game
@@ -162,8 +164,28 @@ var Engine = (function(global) {
         allEnemies.forEach(function(enemy) {
             enemy.render();
         });
-
         player.render();
+    }
+
+    function renderScoreboard(){
+        for (var col = 0; col < player.live; col++) {
+            ctx.drawImage(Resources.get('images/Heart.png'), col * 30 + 5, 550,25,30);
+        }
+        ctx.fillStyle = 'rgba(255, 0, 0)';
+        ctx.font = '25px serif';
+        ctx.textBaseline = 'hanging';
+        ctx.fillText(`Score ${player.score}`, 344, 560);
+    }
+
+    function renderEndGame(){
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.5)';
+        ctx.fillRect(0,0,canvas.width,canvas.height);
+        ctx.fillStyle = 'rgba(255, 0, 0)';
+        ctx.textBaseline = 'hanging';
+        ctx.font = '50px serif';
+        ctx.fillText(`Game Over`, 150, 260);
+        ctx.font = '25px serif';
+        ctx.fillText(`Score ${player.score}`, 200, 330);
     }
 
     /* This function does nothing but it could have been a good place to
@@ -171,10 +193,7 @@ var Engine = (function(global) {
      * those sorts of things. It's only called once by the init() method.
      */
     function reset() {
-        console.log('end');
-        player.end = false;
-        player.init();
-        cancelAnimationFrame(gameAnimate);
+        //cancelAnimationFrame(gameAnimate);
     }
 
     /* Go ahead and load all of the images we know we're going to need to
@@ -186,7 +205,8 @@ var Engine = (function(global) {
         'images/water-block.png',
         'images/grass-block.png',
         'images/enemy-bug.png',
-        'images/char-boy.png'
+        'images/char-boy.png',
+        'images/Heart.png'
     ]);
     Resources.onReady(init);
 

@@ -1,9 +1,9 @@
 // Entities our player must avoid
 class Entity {
-    
-    // Variables applied to each of our instances go here,
-    // we've provided one for you to get started
+        
    constructor() {
+   // Variables applied to each of our instances go here,
+    // we've provided one for you to get started
         this.x = 0;
         this.y = 0;
         // The image/sprite for our entities, this uses
@@ -13,7 +13,7 @@ class Entity {
     
     // Update the entity's position, required method for game
     // Parameter: dt, a time delta between ticks
-    update(dt){
+    update(){
 
     }
     
@@ -36,7 +36,7 @@ class Enemy extends Entity {
 
 // Update the enemy's position, required method for game
     update(dt) {
-        super.update(dt);
+        super.update();
         // You should multiply any movement by the dt parameter
         // which will ensure the game runs at the same speed for
         // all computers.
@@ -44,13 +44,9 @@ class Enemy extends Entity {
         (this.x >= 500)? this.x = -90 : true;
     }
 
-    render() {
-        super.render();
-    }
-
     checkCollisions(pl) {
         if(this.x <= pl.x + 90 && this.x + 90 >= pl.x && this.y + 10 == pl.y){
-            pl.end = true;
+            pl.lost();
         }
 
     }
@@ -66,45 +62,62 @@ class Player extends Entity {
         this.x = 200;
         this.y = 410;
         this.sprite = 'images/char-boy.png';
-        this.end = false;
+        this.live = 3;
+        this.score = 0;
     }
-    update(dt) {
-        super.update(dt);
+    update() {
         if(this.y <= 60){
-            this.end = true;
+            this.win();
+            this.init();
         }
     }
-    render() {
-        super.render();
-    }
+
     init() {
-        this.x = 200;
-        this.y = 410;
+            this.x = 200;
+            this.y = 410;         
+    }
+
+    lost(){
+        this.live--;
+        this.init();
+    }
+
+    win(score = 100){
+        this.score += score;
     }
 
     handleInput(key) {
         //factor to move in x = 100
         //factor to move in y = 85
-        switch(key) {
-            case 'left':
-                (this.x - 100 >= 0) ? this.x -=100 : false;
-                break;
-            case 'right':
-                (this.x + 100 < 500) ? this.x +=100 : false;
-                break;
-            case 'up':
-                (this.y - 85 >= -15) ? this.y -=85 : false;
-                break;
-            case 'down':
-                (this.y + 85 <= 410) ? this.y +=85 : false;
-                break;
-            default:
-                false;
+        if(this.live){    
+            switch(key) {
+                case 'left':
+                    (this.x - 100 >= 0) ? this.x -=100 : false;
+                    break;
+                case 'right':
+                    (this.x + 100 < 500) ? this.x +=100 : false;
+                    break;
+                case 'up':
+                    (this.y - 85 >= -15) ? this.y -=85 : false;
+                    break;
+                case 'down':
+                    (this.y + 85 <= 410) ? this.y +=85 : false;
+                    break;
+                default:
+                    false;
+            }
+        } else if(key == 'esc'){
+            this.reset();
         }
     }
 
-};
+    reset(){
+        this.live = 3;
+        this.score = 0;
+        this.init();
+    }
 
+};
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
@@ -124,7 +137,8 @@ document.addEventListener('keyup', function(e) {
         37: 'left',
         38: 'up',
         39: 'right',
-        40: 'down'
+        40: 'down',
+        27: 'esc'
     };
 
     player.handleInput(allowedKeys[e.keyCode]);
