@@ -145,8 +145,10 @@ var Engine = (function(global) {
             }
         }
 
+        //show the Game over screen when lost 3 lives
         if(player.live<=0){
             renderEndGame();
+            //reset();
         }else{
             renderEntities();
             renderScoreboard();
@@ -167,6 +169,7 @@ var Engine = (function(global) {
         player.render();
     }
 
+    //Method to render the score board
     function renderScoreboard(){
         for (var col = 0; col < player.live; col++) {
             ctx.drawImage(Resources.get('images/Heart.png'), col * 30 + 5, 550,25,30);
@@ -176,7 +179,9 @@ var Engine = (function(global) {
         ctx.textBaseline = 'hanging';
         ctx.fillText(`Score ${player.score}`, 344, 560);
     }
-
+    /*Method to when lost the game
+    * Show Game Over and the score at the end of the game(when lost 3 lives)    
+    */
     function renderEndGame(){
         ctx.fillStyle = 'rgba(255, 255, 255, 0.5)';
         ctx.fillRect(0,0,canvas.width,canvas.height);
