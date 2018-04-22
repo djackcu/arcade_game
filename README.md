@@ -11,7 +11,7 @@
 * [License](#license)
 
 ### Description
-This Arcade Game is a project made in **ES6** javascript with ** object-oriented programming**.It is a Project for practice web front-end skills in the _Udacity Front-End Nanodegree_.
+This Arcade Game is a project made in **ES6** javascript with **object-oriented programming** .It is a Project for practice web front-end skills in the _Udacity Front-End Nanodegree_.
 You can test and enjoy this game.
 
 ### Instructions 
